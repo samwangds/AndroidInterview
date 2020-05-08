@@ -48,7 +48,7 @@
 🤔️：Application 的初始化是在应用进程创建完成后：
 
 * ActivityThread 调用 AMS 的 Binder 对象（ IActivityManager ）的  attachApplication 方法
-* AMS 收到请求后调用再去调用 ActivityThread 的 bindApplication 方法
+* AMS 收到请求后再去调用 ActivityThread 的 bindApplication 方法
 * ActivityThread 这边收到请求再组装一个 AppBindData 对象，把所有参数封装进去，再通过 handler 发到主线程执行
 * 主线程 loop 到这条消息，调用 handleBindApplication 来真正处理初始化 Application
 
@@ -63,7 +63,7 @@ handleBindApplication 和我们谈 “Context” 那次，Activity 的初始化�
 
 **面试官**：为什么进程创建完成不直接调 handleBindApplication 去创建 Application 呢，又去 AMS 那边绕了一圈
 
-🤔️：调用 AMS 的 attachApplication 不仅仅是为了创建 Application ，还有在进程创建前可能调用了应用的四大组件没办法启动；现在进程创建好了，创建好 Application 也要处理这些待启动的组件。所以需要通过 AMS 统一调度，如果 Application 的创建及 onCreate 回调耗时的话，也会影响这些待启动组件启动时间
+🤔️：调用 AMS 的 attachApplication 不仅仅是为了创建 Application ，还有在进程创建前可能调用了应用的四大组件却没办法启动；现在进程创建好了，创建好 Application 也要处理这些待启动的组件。所以需要通过 AMS 统一调度，如果 Application 的创建及 onCreate 回调耗时的话，也会影响这些待启动组件的启动时间
 
 **面试官**：可以，我们再来聊聊别的。
 
