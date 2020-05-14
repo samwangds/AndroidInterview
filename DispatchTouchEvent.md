@@ -6,7 +6,7 @@ Android touch 事件的分发，是面试中最常被问到的问题之一。我
 
 **面试官**：讲讲 Android 的事件分发机制
 
-😎：当用户手指触摸屏幕时，Android 都会将对应的事件包装成一个事件对象 MotionEvent 从 ViewTree 的顶部至上而下地分发传递。用户从手指接触屏幕至离开屏幕会产生一系列的事件，事件是以 down 开始，up 或 cancel 结束，中间无数个 move ; **一个事件的分发顺序是：Activity 到 ViewGroup 再到 View**
+😎：当用户手指触摸屏幕时，Android 会将对应的事件包装成一个事件对象 MotionEvent 从 ViewTree 的顶部至上而下地分发传递。用户从手指接触屏幕至离开屏幕会产生一系列的事件，事件是以 down 开始，up 或 cancel 结束，中间无数个 move ; **一个事件的分发顺序是：Activity 到 ViewGroup 再到 View**
 
 **面试官**：事件分发的过程用到哪些方法
 
@@ -79,7 +79,7 @@ public boolean dispatchTouchEvent(MotionEvent ev) {
 
 🤔️：ViewGroup 里面用了一个成员变量 mFirstTouchTarget 来保存消费事件的子 View 信息，因为安卓是支持多指操作的，所以这个 mFirstTouchTarget 是一个 TouchTarget 的链表。在View 的 dispatchTouchEvent 可以分为三个阶段：判断是否需要拦截； 分发事件找到消费事件的子 View，更新到 mFirstTouchTarget；根据是否拦截和 mFirstTouchTarget 再次分发事件。
 
-再细节我们就要到源码里看实现了，基于 API 28 ViewGroup：
+再细节我们就要到源码里看实现了，以下为 API 28 ViewGroup 的 dispatchTouchEvent 部分源码：
 
 1. 判断是否需要拦截
 
