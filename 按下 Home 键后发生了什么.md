@@ -299,8 +299,8 @@ void launchHomeFromHotKey(final boolean awakenFromDreams, final boolean respectK
          return;
      }
    
-		 intent = mHomeIntent //省略部分逻辑
-		 // 开启 Home 页面
+     intent = mHomeIntent //省略部分逻辑
+     // 开启 Home 页面
      startActivityAsUser(intent, UserHandle.CURRENT);
  }
 ```
@@ -311,4 +311,4 @@ void launchHomeFromHotKey(final boolean awakenFromDreams, final boolean respectK
 
 **面试官**：按下手机的 Home 键，有哪些动作和事件发生
 
-🤔️：按下 Home键后，底层驱动会获取这个事件， AMS 通过 Reader 读取驱动捕获的事件，再通过 Dispatcher 对事件进行分发。Dispatcher 分发事件前，PhoneWindowManager 会对 Home 和其它系统事件进行拦截处理，其中短按 Home 键的处理有：关闭相应的系统弹窗，延迟其它待打开的 Activity，最后使用 Intent 打开 Home 或者 Dock 页面。
+🤔️：按下 Home 键后，底层驱动会获取这个事件， IMS 通过 Reader 读取驱动捕获的事件，再通过 Dispatcher 对事件进行分发。Dispatcher 分发事件前，PhoneWindowManager 会对 Home 和其它系统事件进行拦截处理，其中短按 Home 键的处理有：关闭相应的系统弹窗，延迟其它待打开的 Activity，最后使用 Intent 打开 Home 或者 Dock 页面。
