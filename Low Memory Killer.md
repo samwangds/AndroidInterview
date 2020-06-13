@@ -67,3 +67,5 @@ write /sys/module/lowmemorykiller/parameters/minfree 1024, 4096
 ```objectivec
 write /proc/1/oom_adj -16
 ```
+
+> 掌握了 LMK 机制，再看应用保活中规避被杀的方案，一像素 Activity 也好，前台 Service 也罢，不过是降低 adj 罢了
