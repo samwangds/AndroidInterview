@@ -67,7 +67,7 @@
 🤔️：ContentProvider 本身不是 Context ，但是它有一个成员变量 mContext ，是通过构造函数传入的。那么这个问题就变成了，ContentProvider 什么时候创建。
 应用创建 Application 是通过调用 ActivityThread.handleBindApplication 方法，这个方法的相关流程有：
 * 创建 Application 
-* 初始化 Application 的 Content 
+* 初始化 Application 的 Context 
 * 调用 installContentProviders 并传入刚创建好的 Application 来创建 ContentProvider
 * 调用 Application.onCreate
 
