@@ -40,7 +40,7 @@ boolean onTouchEvent(MotionEvent event)
 
 ## 事件处理的准备工作
 
-> 事件处理设计的整体思路是驱动层会有一个消息队列来存放事件，会有一个 Reader 来不停的读取事件，一个 Dispatcher 来分发消息队列中的事件。Dispatcher 分发的事件最后会通过 jni 上报到 InputManagerService，然后通过接口最后传递给PhoneWindow，PhoneWindow 再根据不同的事件类型来做不同的处理。
+> 事件处理设计的整体思路是驱动层会有一个消息队列来存放事件，会有一个 Reader 来不停的读取事件，一个 Dispatcher 来分发消息队列中的事件。Dispatcher 分发的事件最后会通过 jni 上报到 InputManagerService，然后通过接口最后传递给 PhoneWindow，PhoneWindow 再根据不同的事件类型来做不同的处理。
 
 我们先看一下 Reader、Dispatcher 是怎么来的。
 
