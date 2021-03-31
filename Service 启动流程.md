@@ -64,7 +64,7 @@ bringUpServiceLocked 这就是我们要看的方法，但是在讲它之前，�
 ```java
 ComponentName startServiceLocked(Intent service, ...) {
     // 根据 Intent 获取 ServiceRecord 对象
-    // 每个 Service 在 AMS 都要对应有客以一个 ServiceRecord 对象
+    // 每个 Service 在 AMS 都要对应有一个 ServiceRecord 对象
     // 作用如其名 就是用来记录一些 Service 的信息
     ServiceLookupResult res = retrieveServiceLocked(service, ...)
     ServiceRecord r = res.record;
