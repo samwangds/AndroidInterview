@@ -210,7 +210,7 @@ private boolean isInterestingForBackgroundTraces() {
 我们得到两个结论：
 
 - ANR_SHOW_BACKGROUND 可以在**开发者选项**里配置显示所有“应用程序无响应”，开启后即使是该场景也会有 ANR 弹窗
-- 未开始上述配置情况下，如果是后台进程，则不显示 ANR 弹窗
+- 未开启上述配置情况下，如果是后台进程，则不显示 ANR 弹窗
 
 ## 小结
 

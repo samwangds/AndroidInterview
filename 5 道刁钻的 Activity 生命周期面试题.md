@@ -13,6 +13,8 @@ B.onPause -> B.onNewIntent -> B.onResume
 当 B Activity 的  launchMode 为 singleInstance ，singleTask 且对应的 B Activity 有可复用的实例时，生命周期回调是这样的:
  A.onPause -> B.onNewIntent -> B.onRestart -> B.onStart -> B.onResume -> A.onStop -> ( 如果 A 被移出栈的话还有一个 A.onDestory)
 
+另外当 B 的主题为透明时，不会调用 B.onStop
+
 把几种情况都回答出来就能加分啦，同时也要做好聊 launchMode 的准备。
 
 ## 弹出 Dialog 对生命周期有什么影响
