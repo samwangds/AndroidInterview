@@ -53,13 +53,13 @@
 🤔️：先说结论，可以。我们开发的时候，经常会在 onCreate 里拿到 Application，如果用 getApplicationContext 取，最终调用的就是 ContextImpl 的 getApplicationContext 方法，如果调用的是 getApplication 方法，虽然没调用到 ContextImpl ，但是返回 Activity 的成员变量 mApplication 和 ContextImpl 的时机是一样的。
 
 再说下它的原理，Activity 真正开始启动是从 ActivityThread.performLaunchActivity 开始的，这个方法做了这些事：
+* 调用 createBaseContextForActivity 方法去创建 ContextImpl
 * 通过 ClassLoader 去加载目标 Activity 的类，从而创建 对象
 * 从 packageInfo 里获取 Application 对象
-* 调用 createBaseContextForActivity 方法去创建 ContextImpl
 * 调用 activity.attach ( contextImpl , application) 这个方法就把 Activity 和 Application 以及 ContextImpl 关联起来了，就是上面结论里说的时机一样
 * 最后调用 activity.onCreate 生命周期回调
 
-通过以上的分析，我们知道了 Activity 是先创建类，再初始化 Context ，最后调用 onCreate , 从而得出问题的答案。
+通过以上的分析，我们知道了 Activity 是先初始化 Context ，再创建类，最后调用 onCreate , 从而得出问题的答案。
 不仅 Activity 是这样， Application 、Service 里的 Context 初始化也都是这样的。
 
 **面试官**：那 ContentProvider 里的 Context 又是什么时候初始化的呢？
